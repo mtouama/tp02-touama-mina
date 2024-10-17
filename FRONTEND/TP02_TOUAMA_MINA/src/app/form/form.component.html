@@ -1,0 +1,93 @@
+<!-- faire un formulaire oui-->
+
+<div class="container">
+    <div class="form-summary-container">
+    <div style="width: 50%;height: 100%;">
+    <h2>Formulaire</h2>
+    <form [formGroup]="tp02Form" (ngSubmit)="onSubmit()" #form="ngForm">
+        <div class="form-container">
+        <div class="form-column">
+        <mat-form-field appearance="outline">
+            <mat-label>Prénom</mat-label>
+            <input matInput formControlName="firstName" [disabled]="isSubmit" required>
+        </mat-form-field>
+       
+        <mat-form-field appearance="outline">
+            <mat-label>Nom de famille</mat-label>
+            <input matInput formControlName="lastName" [disabled]="isSubmit" required>
+        </mat-form-field>
+
+       <mat-form-field appearance="outline">
+            <mat-label>Genre</mat-label>
+            <mat-select formControlName="gender" [disabled]="isSubmit">
+                <mat-option *ngFor="let genderOption of genderOptions" [value]="genderOption">
+                    {{genderOption}}
+                </mat-option>
+   
+            </mat-select>
+            
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" [disabled]="isSubmit" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Adresse</mat-label>
+            <input matInput formControlName="address" [disabled]="isSubmit" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Ville</mat-label>
+            <input matInput formControlName="city" [disabled]="isSubmit" required>
+        </mat-form-field>
+    </div>
+    <div class="form-column">
+        <mat-form-field appearance="outline">
+            <mat-label>Code Postal</mat-label>
+            <input matInput formControlName="postalCode" [disabled]="isSubmit" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Pays</mat-label>
+            <input matInput formControlName="country" [disabled]="isSubmit" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Téléphone</mat-label>
+            <input matInput formControlName="phone" [disabled]="isSubmit" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Pseudo</mat-label>
+            <input matInput formControlName="login" [disabled]="isSubmit" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput type="password" formControlName="password" [disabled]="isSubmit" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Confirmer le mot de passe</mat-label>
+            <input matInput type="password" formControlName="confirmPassword" [disabled]="isSubmit" required>
+            <mat-error *ngIf="!checkPassword() && tp02Form.get('confirmPassword')?.touched">
+                <small>Passwords do not match.</small>
+              </mat-error>
+        </mat-form-field>
+    </div>
+        
+    </div>
+
+    <div class="form-footer">
+        <button mat-flat-button color="primary" type="submit" >Envoyer</button>
+    </div>
+    </form>
+</div>
+<div class="summary-container">
+    <app-summary *ngIf="isSubmit" [form]="tp02Form"></app-summary>
+</div>  
+</div>  
+</div>
+  
